@@ -1,0 +1,6 @@
+train: /content/hdd_0/SUSCAP/R106/yoloseg_date/train4/images
+val: /content/hdd_0/SUSCAP/R106/yoloseg_date/valid4/images
+test: /content/hdd_0/SUSCAP/R106/yoloseg_date/valid4/images
+
+nc: 2
+names: ['Dust','Scratch']
