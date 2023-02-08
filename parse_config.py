@@ -55,7 +55,7 @@ train_txt = f"python3 /content/yolov7/segment/train.py\
     --mask-ratio 2\
     --hyp '/content/yolov7/data/hyp.yaml'"
 export_txt = f"python3 /content/yolov7/export.py \
-    --weights /data/USER_PARAMS['SAVE-FOLDER-NAME']/{date}/weights/best.pt\
+    --weights /data/{USER_PARAMS['SAVE-FOLDER-NAME']}/{date}/weights/best.pt\
     --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
     --simplify\
     --device 0\
