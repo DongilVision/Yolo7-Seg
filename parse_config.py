@@ -16,22 +16,22 @@ try:
 except:
     AUG = False
 if USER_PARAMS['WEIGHTS']=="nano":
-    weights = "yolov7_training.pt"
+    weights = "yolov7.pt"
     cfg = "yolov7.yaml"
 elif USER_PARAMS['WEIGHTS']=="x":
-    weights = "yolov7x_training.pt"
+    weights = "yolov7x.pt"
     cfg = "yolov7x.yaml"
 elif USER_PARAMS['WEIGHTS']=="w6":
-    weights = "yolov7-w6_training.pt"
+    weights = ""
     cfg = "yolov7-w6.yaml"
 elif USER_PARAMS['WEIGHTS']=="e6":
-    weights = "yolov7-e6_training.pt"
+    weights = ""
     cfg = "yolov7-e6.yaml"
 elif USER_PARAMS['WEIGHTS']=="d6":
-    weights = "yolov7-d6_training.pt"
+    weights = ""
     cfg = "yolov7-d6.yaml"
 elif USER_PARAMS['WEIGHTS']=="e6e":
-    weights = "yolov7-e6e_training.pt"
+    weights = ""
     cfg = "yolov7-e6e.yaml"
 train_txt = f"python3 /content/yolov7/segment/train.py\
     --batch-size {USER_PARAMS['BATCH-SIZE']}\
