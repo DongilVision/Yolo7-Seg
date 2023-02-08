@@ -57,6 +57,7 @@ train_txt = f"python3 /content/yolov7/segment/train.py\
 export_txt = f"python3 /content/yolov7/export.py \
     --weights /data/{USER_PARAMS['SAVE-FOLDER-NAME']}/{date}/weights/best.pt\
     --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
+    --data '/content/yolov7/data/data.yaml'\
     --simplify\
     --device 0\
     --include onnx\
