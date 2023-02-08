@@ -55,13 +55,12 @@ train_txt = f"python3 /content/yolov7/segment/train.py\
 export_txt = f"python3 /content/segment/yolov7/export.py \
     --weights /data/result/{USER_PARAMS['SAVE-FOLDER-NAME']}/weights/best.pt\
     --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
-    --grid\
-    --end2end\
-    --max-wh {USER_PARAMS['IMG-SIZE']}\
-    --topk-all 1000\
-    --iou-thres 0.2\
+    --simplify\
+    --device 0\
+    --include onnx\
+    --iou-thres 0.25\
     --conf-thres 0.1\
-    --simplify"
+    "
 export_trt_path = f"python3 /content/TensorRT-For-YOLO-Series/export.py \
     -o /data/result/{USER_PARAMS['SAVE-FOLDER-NAME']}/weights/best.onnx \
     -e /data/result/{USER_PARAMS['SAVE-FOLDER-NAME']}/weights/best.trt \
@@ -77,9 +76,9 @@ with open("/data/train.sh","w") as f:
         f.write("\n")
     f.write(train_txt)
     f.write("\n")
-    # f.write(export_txt)
+    f.write(export_txt)
     f.write("\n")
-    # f.write(export_trt_path)
+    f.write(export_trt_path)
     f.write("\n")
     f.write(f"mkdir /data/result/{USER_PARAMS['SAVE-FOLDER-NAME']}/weights_temp")
     f.write("\n")
@@ -95,9 +94,7 @@ with open("/data/train.sh","w") as f:
     f.write("\n")
 DATA_PARAMS["train"] = "/data/images/train" if not AUG else "/data/AUG_DATA/images/train"
 DATA_PARAMS["val"] = "/data/images/validation" if not AUG else "/data/AUG_DATA/images/validation"
-# with open("./data.yaml" ,"w") as f:
 with open("/content/yolov7/data/data.yaml" ,"w") as f:
     yaml.dump(DATA_PARAMS,f)
-# with open("./hyp.yaml" ,"w") as f:
 with open("/content/yolov7/data/hyp.yaml" ,"w") as f:
     yaml.dump(YOLO_PARAMS,f)
