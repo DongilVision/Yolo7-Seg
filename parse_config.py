@@ -37,7 +37,7 @@ train_txt = f"python3 /content/yolov7/segment/train.py\
     --batch-size {USER_PARAMS['BATCH-SIZE']}\
     --epochs {USER_PARAMS['EPOCHS']}\
     --device {USER_PARAMS['DEVICE']}\
-    --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
+    --img-size {USER_PARAMS['IMG-SIZE']}\
     --name {USER_PARAMS['SAVE-FOLDER-NAME']}\
     --label-smoothing {USER_PARAMS['LABEL-SMOOTHING']}\
     --weights /content/yolov7/{weights}\
