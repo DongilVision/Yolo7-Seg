@@ -33,35 +33,20 @@ elif USER_PARAMS['WEIGHTS']=="d6":
 elif USER_PARAMS['WEIGHTS']=="e6e":
     weights = "yolov7-e6e_training.pt"
     cfg = "yolov7-e6e.yaml"
-if USER_PARAMS["IMG-SIZE"]==640:
-    train_txt = f"python3 /content/yolov7/train.py\
-        --batch-size {USER_PARAMS['BATCH-SIZE']}\
-        --epochs {USER_PARAMS['EPOCHS']}\
-        --device {USER_PARAMS['DEVICE']}\
-        --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
-        --name {USER_PARAMS['SAVE-FOLDER-NAME']}\
-        --label-smoothing {USER_PARAMS['LABEL-SMOOTHING']}\
-        --weights /content/yolov7/{weights}\
-        --data '/content/yolov7/data/data.yaml'\
-        --project /data/result\
-        --cfg /content/yolov7/cfg/training/{cfg}\
-        --mask-ratio 2\
-        --hyp '/content/yolov7/data/hyp.yaml'"
-elif USER_PARAMS["IMG-SIZE"]==1280:
-    train_txt = f"python3 /content/yolov7/train_aux.py\
-        --batch-size {USER_PARAMS['BATCH-SIZE']}\
-        --epochs {USER_PARAMS['EPOCHS']}\
-        --device {USER_PARAMS['DEVICE']}\
-        --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
-        --name {USER_PARAMS['SAVE-FOLDER-NAME']}\
-        --label-smoothing {USER_PARAMS['LABEL-SMOOTHING']}\
-        --weights /content/yolov7/{weights}\
-        --data '/content/yolov7/data/data.yaml'\
-        --project /data/result\
-        --cfg /content/yolov7/cfg/training/{cfg}\
-        --mask-ratio 2\
-        --hyp '/content/yolov7/data/hyp.yaml'"
-export_txt = f"python3 /content/yolov7/export.py \
+train_txt = f"python3 /content/yolov7/segment/train.py\
+    --batch-size {USER_PARAMS['BATCH-SIZE']}\
+    --epochs {USER_PARAMS['EPOCHS']}\
+    --device {USER_PARAMS['DEVICE']}\
+    --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
+    --name {USER_PARAMS['SAVE-FOLDER-NAME']}\
+    --label-smoothing {USER_PARAMS['LABEL-SMOOTHING']}\
+    --weights /content/yolov7/{weights}\
+    --data '/content/yolov7/data/data.yaml'\
+    --project /data/result\
+    --cfg /content/yolov7/cfg/training/{cfg}\
+    --mask-ratio 2\
+    --hyp '/content/yolov7/data/hyp.yaml'"
+export_txt = f"python3 /content/segment/yolov7/export.py \
     --weights /data/result/{USER_PARAMS['SAVE-FOLDER-NAME']}/weights/best.pt\
     --img-size {USER_PARAMS['IMG-SIZE']} {USER_PARAMS['IMG-SIZE']}\
     --grid\
@@ -86,9 +71,9 @@ with open("/data/train.sh","w") as f:
         f.write("\n")
     f.write(train_txt)
     f.write("\n")
-    f.write(export_txt)
+    # f.write(export_txt)
     f.write("\n")
-    f.write(export_trt_path)
+    # f.write(export_trt_path)
     f.write("\n")
     f.write(f"mkdir /data/result/{USER_PARAMS['SAVE-FOLDER-NAME']}/weights_temp")
     f.write("\n")
