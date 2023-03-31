@@ -386,7 +386,7 @@ def export_engine(model, im, file, half, dynamic, simplify, workspace=4, verbose
         model.model[-1].anchor_grid = grid
     else:  # TensorRT >= 8
         check_version(trt.__version__, '8.0.0', hard=True)  # require tensorrt>=8.0.0
-        export_onnx(model, im, file, 13, False, dynamic, simplify)  # opset 13
+        # export_onnx(model, im, file, 13, False, dynamic, simplify)  # opset 13
     onnx = file.with_suffix('.onnx')
 
     LOGGER.info(f'\n{prefix} starting export with TensorRT {trt.__version__}...')
@@ -742,3 +742,6 @@ def main(opt):
 if __name__ == "__main__":
     opt = parse_opt()
     main(opt)
+
+# python export.py --weights best.pt --imgsz 1280 1280 --device 0 --topk-all 100 --iou-thres 1.0 --conf-thres 0.1 --include onnx
+# python export.py --weights yolov7-seg.pt --imgsz 1280 1280 --device 0 --topk-all 1000 --iou-thres 0.25 --conf-thres 0.01 --include engine --half --workspace 2
